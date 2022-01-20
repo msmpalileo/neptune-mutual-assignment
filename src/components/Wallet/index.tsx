@@ -18,36 +18,35 @@ const Wallet:FC<WalletProps> = ({open, toggle}) => {
   const connect = async () => {
     try {
       await activate(injected);
-    } catch (ex) {
-      console.log(ex)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   const disconnect = async () => {
     try {
       deactivate()
-    } catch (ex) {
-      console.log(ex)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   const getBalance = async (id: string) => {
     try {
       await library.eth.getBalance(id, (err: any, result: any) => {
         setCurrentBalance(result);
       });
-      
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(()=>{
     if(account) {
       getBalance(account);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active])
+  }, [active]);
 
   return (
     <Modal
