@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Converter from "./components/Converter";
+import Wallet from "./components/Wallet";
+import { Container } from 'reactstrap';
+import { Web3ReactProvider } from '@web3-react/core'
+import Web3 from 'web3';
+
+const getLibrary = (provider: any) => {
+  return new Web3(provider)
+}
 
 function App() {
+  const [walletOpen, setWalletOpen] = useState<boolean>(false);
+
+  const handleWalletOpen = () => {
+    setWalletOpen(!walletOpen);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <Container className="container-main h-100">
+        <Converter toggle={handleWalletOpen}/>
+        <Wallet open={walletOpen} toggle={handleWalletOpen} />
+      </Container>
+    </Web3ReactProvider>
   );
 }
 

@@ -5,9 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #1A1825 !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+//Helpers
+.full-height-vh {
+  height: 100vh;
+}
+
+.button-transparent {
+  border: 0;
+  background: transparent;
+  color: #347ABB;
+  font-weight: 500;
+}
+
+.text-right {
+  text-align: right;
 }
